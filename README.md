@@ -1,0 +1,1 @@
+# manual-wordpress-plugin-organizer

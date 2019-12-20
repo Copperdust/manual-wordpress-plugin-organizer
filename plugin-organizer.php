@@ -34,7 +34,6 @@ class PluginOrganizer
     'duplicate-post/duplicate-post.php',
     'easy-table-of-contents/easy-table-of-contents.php',
     'envato-market/envato-market.php',
-    'facebook-for-woocommerce/facebook-for-woocommerce.php',
     'hide-this/hide-this.php',
     'hm-product-sales-report-pro/hm-product-sales-report.php',
     'hotjar/hotjar.php',
@@ -101,9 +100,29 @@ class PluginOrganizer
     'cbdfx-logic/cbdfx-logic.php',
     'hotjar/hotjar.php',
     'redis-cache-pro/redis-cache-pro.php',
+    'facebook-for-woocommerce/facebook-for-woocommerce.php',
   );
 
   public $cart_and_checkout = array(
+    'affiliate-wp-pushover/affiliate-wp-pushover.php',
+    'affiliate-wp/affiliate-wp.php',
+    'affiliatewp-affiliate-area-tabs/affiliatewp-affiliate-area-tabs.php',
+    'affiliatewp-force-pending-referrals/affwp-force-pending-referrals.php',
+    'affiliatewp-order-details-for-affiliates/affiliatewp-order-details-for-affiliates.php',
+    'affiliatewp-show-affiliate-coupons/affiliatewp-show-affiliate-coupons.php',
+    'affiliatewp-store-credit/affiliatewp-store-credit.php',
+    'affiliatewp-tiered-affiliate-rates/affiliate-wp-tiered-rates.php',
+    'affiliatewp-woocommerce-redirect-affiliates/affwp-wc-redirect-affiliates.php',
+
+    'CBDAffs-plugin/index.php',
+    'revoffers-advertiser-integration/revoffers-advertiser-integration.php',
+    'refersion-for-woocommerce/refersion.php',
+    'omnisend-connect/omnisend-woocommerce.php',
+  );
+
+  public $cart = array();
+
+  public $checkout = array(
     'woocommerce-shipstation-integration/woocommerce-shipstation.php',
     'woocommerce-square/woocommerce-square.php',
     'woocommerce-conditional-shipping-and-payments/woocommerce-conditional-shipping-and-payments.php',
@@ -111,10 +130,6 @@ class PluginOrganizer
     'weight-based-shipping-for-woocommerce/plugin.php',
     'rewardsystem/rewardsystem.php',
   );
-
-  public $cart = array();
-
-  public $checkout = array();
 
   function __construct()
   {
@@ -207,6 +222,10 @@ class PluginOrganizer
 
     // Cart page filter
     if (strpos($this->url, '/cart') !== false) {
+      if (!$GLOBALS['loggedasdf']) {
+        $GLOBALS['loggedasdf'] = true;
+        error_log("Filtered plugin list:" . print_r(array_merge($this->always_enabled, $this->cart_and_checkout, $this->cart), true));
+      }
       return array_merge($this->always_enabled, $this->cart_and_checkout, $this->cart);
     }
 
